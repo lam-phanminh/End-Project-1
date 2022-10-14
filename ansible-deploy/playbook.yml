@@ -10,7 +10,7 @@
 
     - name: deploy PHP app docker container
       docker_container:
-        image: phanminhlam/php-app
+        image: phanminhlam/php-app:13
         name: php-app
         state: started
         ports:
