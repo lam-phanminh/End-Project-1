@@ -17,9 +17,9 @@ pipeline{
             stage('Docker login && push image ......'){	    
                 steps{
 		            
-                    withCredentials([usernamePassword(credentialsId: 'docker-hub', passwordVariable: 'passwd-dockerhub', usernameVariable: 'user-dockerhub')]) {
+                    withCredentials([usernamePassword(credentialsId: 'docker-hub', passwordVariable: 'passwd', usernameVariable: 'user')]) {
        
-                        sh 'docker login -u ${user-dockerhub} -p ${passwd-dockerhub} && docker push phanminhlam/php-app:$BUILD_NUMBER'
+                        sh 'docker login -u $user -p $passwd && docker push phanminhlam/php-app:$BUILD_NUMBER'
 
                     }
                 }
