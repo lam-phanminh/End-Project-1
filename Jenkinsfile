@@ -14,7 +14,7 @@ pipeline{
             }
             stage('Build......'){	    
                 steps{
-		            sh 'docker build -t phanminhlam/php-app:$BUILD_NUMBER'
+		            sh 'docker build -t phanminhlam/php-app:$BUILD_NUMBER .'
                 }
             }
             stage('Docker login && push image ......'){	    
