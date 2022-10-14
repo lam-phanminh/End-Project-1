@@ -22,11 +22,11 @@ pipeline{
 		            sh 'docker login -u phanminhlam -p Phanminhlam1@ && docker push phanminhlam/php-app:$BUILD_NUMBER'
                 }
             }
-            // stage('Deploy...'){	    
-            //     steps{
-		    //         sh 'docker login -u phanminhlam -p Phanminhlam1@ && docker push phanminhlam/myimage:$BUILD_NUMBER'
-            //     }
-            // }        
+            stage('Deploy...'){	    
+                steps{
+		            sh 'cd ansible-deploy && ansible-playbook -i inventory playbook.yml'
+                }
+            }        
      
         }
 }
