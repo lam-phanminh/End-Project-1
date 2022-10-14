@@ -27,9 +27,19 @@ pipeline{
             }
             stage('Deploy...'){	    
                 steps{
-		            sh 'cd ansible-deploy && ansible-playbook -i inventory playbook.yml --extra-vars "tag=$BUILD_NUMBER"'
-                }
-            }        
+		            // sh 'cd ansible-deploy && ansible-playbook -i inventory playbook.yml --extra-vars "tag=$BUILD_NUMBER"'
+                    // ansiblePlaybook installation: 'ansible-kslave1', inventory: './ansible-deploy/inventory', playbook: './ansible-deploy/playbook.yml'
+                        ansiblePlaybook('./ansible-deploy/playbook.yml') {
+                            inventoryPath('./ansible-deploy/inventory')                                                      
+                            // credentialsId('credsid')
+                            become(true)
+                            becomeUser("root")
+                            extraVars {
+                                extraVar("tag", "$BUILD_NUMBER", true)
+                            }
+                        }
+                }        
      
+            }
         }
 }
