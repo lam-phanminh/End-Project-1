@@ -16,7 +16,12 @@ pipeline{
             }
             stage('Docker login && push image ......'){	    
                 steps{
-		            sh 'docker login -u phanminhlam -p Phanminhlam1@ && docker push phanminhlam/php-app:$BUILD_NUMBER'
+		            
+                    withCredentials([usernamePassword(credentialsId: 'docker-hub', passwordVariable: 'passwd-dockerhub', usernameVariable: 'user-dockerhub')]) {
+       
+                        sh 'docker login -u ${user-dockerhub} -p ${passwd-dockerhub} && docker push phanminhlam/php-app:$BUILD_NUMBER'
+
+                    }
                 }
             }
             stage('Deploy...'){	    
