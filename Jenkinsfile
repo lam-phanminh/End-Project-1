@@ -1,9 +1,10 @@
 pipeline{
-
-	// agent {label 'kslave1'}
-	agent any
+	
+    // agent {label 'kslave1'}
+	
+    agent any
         stages{
-            stage('Checkout'){	    
+            stage('Checkout...'){	    
                 steps{
 		            echo 'cloning..'
                     git 'https://github.com/lam-phanminh/End-Project-1.git'
@@ -20,6 +21,7 @@ pipeline{
                     withCredentials([usernamePassword(credentialsId: 'docker-hub', passwordVariable: 'passwd', usernameVariable: 'user')]) {
        
                         sh 'echo "${passwd} | docker login -u ${user} --password-stdin" && docker push phanminhlam/php-app:$BUILD_NUMBER'
+                    
                     }
                 }
             }
