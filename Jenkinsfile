@@ -24,7 +24,7 @@ pipeline{
             }
             stage('Deploy...'){	    
                 steps{
-		            sh 'cd ansible-deploy && ansible-playbook -i inventory playbook.yml'
+		            sh 'cd ansible-deploy && ansible-playbook -i inventory playbook.yml --extra-vars "tag=$BUILD_NUMBER"'
                 }
             }        
      
