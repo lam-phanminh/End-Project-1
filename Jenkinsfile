@@ -19,8 +19,7 @@ pipeline{
 		            
                     withCredentials([usernamePassword(credentialsId: 'docker-hub', passwordVariable: 'passwd', usernameVariable: 'user')]) {
        
-                        sh 'docker login -u $user -p $passwd && docker push phanminhlam/php-app:$BUILD_NUMBER'
-
+                        sh 'echo "${passwd} | docker login -u ${user} --password-stdin" && docker push phanminhlam/php-app:$BUILD_NUMBER'
                     }
                 }
             }
