@@ -1,10 +1,7 @@
 pipeline{
-    // tools{
-    //     jdk 'myjava'
-    //     maven 'mvnn'
-    // }
-	agent {label 'kslave1'}
-	// agent any
+
+	// agent {label 'kslave1'}
+	agent any
         stages{
             stage('Checkout'){	    
                 steps{
