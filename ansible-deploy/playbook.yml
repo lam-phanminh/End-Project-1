@@ -2,11 +2,6 @@
 - hosts: kslave1
   become: yes
   tasks:
-    # - name: Log into DockerHub
-    #   docker_login:
-    #     username: phanminhlam
-    #     password: Phanminhlam1@
-    #     # email: docker@docker.io
     - name: deploy PHP app docker container
       docker_container:
         image: 'phanminhlam/php-app:{{ tag }}'
